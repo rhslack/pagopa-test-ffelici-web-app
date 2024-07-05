@@ -1,0 +1,54 @@
+trigger:
+- master
+
+pool:
+  name: Default
+  demands:
+   - agent.name -equals Weltgeist
+
+variables:
+- name: adoEnvironment
+  value: project-environment
+
+stages:
+- stage: 'Terraform_Plan'
+  displayName: 'Terraform Plan'
+  jobs:
+  - job: 'Terraform_Plan'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        echo "Running Terraform init..."
+        terraform init
+        echo "Running Terraform plan..."
+        terraform plan -var-file ./values/values.tf
+      displayName: 'Terraform plan'
+      workingDirectory: .
+      env:
+        ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET) # this needs to be explicitly set as it's a sensitive value
+
+- stage: 'Terraform_Apply'
+  displayName: 'Terraform Apply'
+  dependsOn:
+  - 'Terraform_Plan'
+  condition: succeeded()
+  jobs:
+  - deployment: 'Terraform_Apply'
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: $(adoEnvironment)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - script: |
+              echo "Running Terraform init..."
+              terraform init
+              echo "Running Terraform apply..."
+              terraform apply -var-file ./values/values.tf 
+            displayName: 'Terraform apply'
+            workingDirectory: .
+            env:
+              ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
