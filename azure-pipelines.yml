@@ -8,7 +8,7 @@ pool:
 
 variables:
 - name: adoEnvironment
-  type: project-environment
+  value: project-environment
 
 stages:
 - stage: 'Terraform_Plan'
