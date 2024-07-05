@@ -19,6 +19,10 @@ resource "azurerm_linux_web_app" "frontend" {
     }
   }
 
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.main.instrumentation_key
+  }
+
   connection_string {
     name  = "PSQL_Connection_ro"
     value = azurerm_key_vault_secret.psql_connection_string_ro.id
@@ -49,6 +53,10 @@ resource "azurerm_linux_web_app" "backend-transaction" {
     }
   }
 
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.main.instrumentation_key
+  }
+
   connection_string {
     name  = "PSQL_Connection"
     value = azurerm_key_vault_secret.psql_connection_string.id
@@ -63,6 +71,10 @@ resource "azurerm_linux_function_app" "backend-core" {
   service_plan_id            = azurerm_service_plan.app-service-be-plan.id
   storage_account_name       = azurerm_storage_account.functions.name
   storage_account_access_key = azurerm_storage_account.functions.primary_access_key
+
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.main.instrumentation_key
+  }
 
   site_config {
     application_stack {
