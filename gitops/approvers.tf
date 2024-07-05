@@ -1,6 +1,7 @@
 locals {
   azure_approvers = [
-    "fabio.felici96c@outlook.com"
+    "fabio.felici96c@outlook.com",
+    # This is an example, add user here to grant approval permissions
   ]
 }
 

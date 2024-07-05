@@ -1,5 +1,54 @@
 # pagopa-test-ffelici-web-app
 
+## Write a Terraform configuration that will create a production ready infrastructure needed for publishing a web application (frontend and backend) to the internet
+
+## Gitops implementation
+
+GitOps is a modern approach to managing application infrastructure and deployments using Git as a single source of truth. 
+
+The application of the infrastructure was made to be managed through Azure DevOps by first applying with terraform the [gitops](./gitops/) module of this repository.
+
+## Prerequisites
+
+1. **Azure Subscription**: Ensure you have an active Azure subscription.
+2. **Azure DevOps Account**: Create an account on Azure DevOps if you don't have one.
+3. **Terraform Installed**: Install Terraform on your local machine.
+4. **Git Installed**: Ensure Git is installed and configured.
+
+## Infrastructure architecture
+
+This infrastructure includes three main components a web app in nodejs for the frontend, one function app for an assumed backend in golang and one web app for api backend in golang.
+
+![Alt text](docs/pagopa-tech-test-ffelici.drawio.png)
+
+### Secure network with APPGW WAF enabled 
+
+Azure Application Gateway with Web Application Firewall (WAF) is a best choice for several reasons:
+
+- Enhanced Security: WAF provides protection against common web vulnerabilities and attacks such as SQL injection, cross-site scripting (XSS), and others, by inspecting incoming traffic.
+
+- Scalability and Availability: It automatically scales based on traffic demands, ensuring high availability and performance for your applications.
+
+- Centralized Management: Simplifies management by acting as a central point for SSL termination, URL-based routing, and load balancing, which reduces the complexity of your infrastructure.
+
+- Integrated Monitoring and Diagnostics: Offers detailed analytics and logging, enabling better insight into traffic patterns and potential threats.
+
+- Cost Efficiency: Consolidates various functions such as load balancing, SSL termination, and WAF into a single service, reducing the need for multiple disparate services and lowering overall costs.
+
+- Compliance: Helps meet regulatory requirements by providing advanced security features and detailed logging for audits.
+
+These features make Azure Application Gateway with WAF an excellent choice for securing, managing, and optimizing web application delivery.
+
+### Database
+
+Azure Database for PostgreSQL Flexible Server is a better choice due to its enhanced control, flexibility, and cost-efficiency. It offers greater customization of maintenance windows, backup retention, and performance tuning. Additionally, it supports deployment across multiple availability zones for high availability, provides more granular scaling options, and allows stopping and starting the server to save costs during idle periods. This makes it ideal for complex, variable workloads that require high availability and custom configurations.
+
+## Applications scaling
+
+App services in a consonant cutoff that enables autoscaling fetaure have custom metrics in place to perform scaling based on CPU utilization greater than 90%.
+
+![Alt text](docs/autoscale_metrics.png)
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
