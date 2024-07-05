@@ -1,0 +1,2 @@
+project-name        = "pagopa-test-ffelici-web-app"
+project-description = "Write a Terraform configuration that will create a production ready infrastructure needed for publishing a web application (frontend and backend) to the internet."
