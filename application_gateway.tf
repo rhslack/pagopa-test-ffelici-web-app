@@ -97,7 +97,7 @@ module "app_gw" {
   }
 
   ssl_profiles = [{
-    name                             = format("%s-ssl-profile", var.prefix)
+    name                             = "${var.prefix}-ssl-profile"
     trusted_client_certificate_names = null
     verify_client_cert_issuer_dn     = false
     ssl_policy = {
@@ -119,9 +119,9 @@ module "app_gw" {
   listeners = {
     api = {
       protocol           = "Https"
-      host               = format("api.%s.%s", var.prefix, var.external_domain)
+      host               = "api.${var.prefix}.${var.external_domain}"
       port               = 443
-      ssl_profile_name   = format("%s-ssl-profile", var.prefix)
+      ssl_profile_name   = "${var.prefix}-ssl-profile"
       firewall_policy_id = null
       certificate = {
         name = azurerm_key_vault_certificate.certificate_api.name
@@ -134,9 +134,9 @@ module "app_gw" {
 
     portal = {
       protocol           = "Https"
-      host               = format("portal.%s.%s", var.prefix, var.external_domain)
+      host               = "portal.${var.prefix}.${var.external_domain}"
       port               = 443
-      ssl_profile_name   = format("%s-ssl-profile", var.prefix)
+      ssl_profile_name   = "${var.prefix}-ssl-profile"
       firewall_policy_id = null
       certificate = {
         name = azurerm_key_vault_certificate.certificate_portal.name
@@ -149,9 +149,9 @@ module "app_gw" {
 
     management = {
       protocol           = "Https"
-      host               = format("management.%s.%s", var.prefix, var.external_domain)
+      host               = "management.${var.prefix}.${var.external_domain}"
       port               = 443
-      ssl_profile_name   = format("%s-ssl-profile", var.prefix)
+      ssl_profile_name   = "${var.prefix}-ssl-profile"
       firewall_policy_id = null
       certificate = {
         name = azurerm_key_vault_certificate.certificate_management.name

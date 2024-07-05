@@ -1,7 +1,7 @@
 locals {
-  api_domain        = format("api.%s.%s", var.prefix, var.external_domain)
-  portal_domain     = format("portal.%s.%s", var.prefix, var.external_domain)
-  management_domain = format("management.%s.%s", var.prefix, var.external_domain)
+  api_domain        = "api.${var.prefix}.${var.external_domain}"
+  portal_domain     = "portal.${var.prefix}.${var.external_domain}"
+  management_domain = "management.${var.prefix}.${var.external_domain}"
 }
 
 
@@ -22,9 +22,9 @@ resource "azurerm_api_management" "apim" {
 
   policy {
     xml_content = templatefile("./templates/base_policy.tpl", {
-      portal-domain         = format("portal.%s.%s", var.prefix, var.external_domain)
-      management-api-domain = format("management.%s.%s", var.prefix, var.external_domain)
-      apim-name             = format("apim.%s.%s", var.prefix, var.external_domain)
+      portal-domain         = "portal.${var.prefix}.${var.external_domain}"
+      management-api-domain = "management.${var.prefix}.${var.external_domain}"
+      apim-name             = "apim.${var.prefix}.${var.external_domain}"
     })
   }
 
