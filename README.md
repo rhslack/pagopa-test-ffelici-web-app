@@ -43,6 +43,28 @@ These features make Azure Application Gateway with WAF an excellent choice for s
 
 Azure Database for PostgreSQL Flexible Server is a better choice due to its enhanced control, flexibility, and cost-efficiency. It offers greater customization of maintenance windows, backup retention, and performance tuning. Additionally, it supports deployment across multiple availability zones for high availability, provides more granular scaling options, and allows stopping and starting the server to save costs during idle periods. This makes it ideal for complex, variable workloads that require high availability and custom configurations.
 
+### Monitoring
+
+Monitoring applications and diagnosing logs in Azure are critical for several reasons, ensuring optimal performance, security, and cost-effectiveness of cloud-based services. Here are the key points highlighting their importance:
+
+- Resource Utilization: Monitoring tools provide insights into resource usage (CPU, memory, disk, network), helping to identify underutilized or overburdened resources. This allows for better resource allocation and scaling decisions.
+
+- Application Performance: Detailed monitoring of application performance metrics such as response time, request rates, and error rates helps identify performance bottlenecks and optimize code and configurations.
+
+- Threat Detection: Continuous monitoring can detect unusual or unauthorized activities, helping to identify potential security threats and breaches in real-time.
+
+- Compliance: For industries with strict regulatory requirements, logging and monitoring ensure that all activities are tracked and recorded, aiding in compliance and audit processes.
+
+- Root Cause Analysis: Log diagnostics enable detailed examination of system and application logs to trace issues back to their root causes, significantly reducing the time required to resolve problems.
+
+- Error Tracking: Monitoring tools can automatically detect and alert on errors and exceptions, allowing for immediate attention and quick resolution.
+
+- Cost Optimization: By monitoring resource usage and application performance, businesses can identify opportunities to optimize costs by scaling resources up or down based on demand and usage patterns.
+
+- Avoidance of Over-provisioning: Detailed insights help avoid over-provisioning resources, ensuring that you only pay for what you need.
+
+- Centralized Management: Azure’s monitoring and diagnostic tools provide a centralized view of the health and performance of all cloud resources, simplifying management and oversight.
+
 ## Applications scaling
 
 App services in a consonant cutoff that enables autoscaling fetaure have custom metrics in place to perform scaling based on CPU utilization greater than 90%.
@@ -77,6 +99,7 @@ App services in a consonant cutoff that enables autoscaling fetaure have custom 
 |------|------|
 | [azurerm_api_management.apim](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/api_management) | resource |
 | [azurerm_api_management_custom_domain.api_custom_domain](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/api_management_custom_domain) | resource |
+| [azurerm_application_insights.main](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/application_insights) | resource |
 | [azurerm_dns_a_record.dns_a_api](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/dns_a_record) | resource |
 | [azurerm_dns_a_record.dns_a_management](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/dns_a_record) | resource |
 | [azurerm_dns_a_record.dns_a_portal](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/dns_a_record) | resource |
@@ -94,8 +117,10 @@ App services in a consonant cutoff that enables autoscaling fetaure have custom 
 | [azurerm_linux_function_app.backend-core](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/linux_function_app) | resource |
 | [azurerm_linux_web_app.backend-transaction](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/linux_web_app) | resource |
 | [azurerm_linux_web_app.frontend](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/linux_web_app) | resource |
+| [azurerm_log_analytics_workspace.main](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/log_analytics_workspace) | resource |
 | [azurerm_monitor_autoscale_setting.backend](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/monitor_autoscale_setting) | resource |
 | [azurerm_monitor_autoscale_setting.frontends](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/monitor_autoscale_setting) | resource |
+| [azurerm_monitor_diagnostic_setting.psql_diagnostics](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/monitor_diagnostic_setting) | resource |
 | [azurerm_postgresql_active_directory_administrator.database](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/postgresql_active_directory_administrator) | resource |
 | [azurerm_postgresql_flexible_server.database](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/postgresql_flexible_server) | resource |
 | [azurerm_postgresql_flexible_server_configuration.connection_throttling](https://registry.terraform.io/providers/hashicorp/azurerm/3.52.0/docs/resources/postgresql_flexible_server_configuration) | resource |
