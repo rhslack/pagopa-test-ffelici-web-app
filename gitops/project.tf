@@ -26,10 +26,13 @@ resource "azuredevops_serviceendpoint_azurerm" "project" {
   azurerm_subscription_name = "Azure subscription 1"
 }
 
-
-data "azuredevops_git_repository" "project" {
-  project_id = azuredevops_project.project.id
-  name       = "pagopa-test-ffelici-web-app"
+resource "azuredevops_serviceendpoint_github" "project" {
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = "pagopa-test-ffelici-web-app-github-connection"
+  description           = "Connection to GitHub for repository access"
+  auth_personal {
+    personal_access_token = var.github_access_token
+  }
 }
 
 resource "azuredevops_build_definition" "project" {
@@ -37,10 +40,11 @@ resource "azuredevops_build_definition" "project" {
   name       = "pagopa-test-ffelici-web-app-pipeline"
   path       = "\\"
   repository {
-    repo_type   = "TfsGit"
-    repo_id     = data.azuredevops_git_repository.project.id
-    branch_name = "refs/heads/main"
-    yml_path    = "azure-pipelines.yml"
+    repo_type             = "GitHub"
+    service_connection_id = azuredevops_serviceendpoint_github.project.id
+    repo_id               = "rhslack/pagopa-test-ffelici-web-app"
+    branch_name           = "refs/heads/main"
+    yml_path              = "azure-pipelines.yml"
   }
   ci_trigger {
     use_yaml = true
