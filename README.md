@@ -19,7 +19,7 @@ The application of the infrastructure was made to be managed through Azure DevOp
 
 This infrastructure includes three main components a web app in nodejs for the frontend, one function app for an assumed backend in golang and one web app for api backend in golang.
 
-![Alt text](docs/pagopa-tech-test-ffelici.drawio.png)
+![Alt text](docs/pagopa-tech-test-ffelici.png)
 
 ### Secure network with APPGW WAF enabled 
 
